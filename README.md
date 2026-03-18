@@ -15,12 +15,17 @@ NYC Yellow Taxi Trip Data (Kaggle)
 1. Data Ingestion (Batch processing, CSV → Parquet)
 2. ETL (Data cleaning and transformation)
 3. Feature Engineering (Extracted time-based features (hour, day of week), Created congestion level target variable based on average speed)
-4. Deployment on Azure (Upcoming)
+4. EDA:
+- Analyzed feature distributions (speed, duration)
+- Checked congestion level balance
+- Validated relationships between variables
+- Confirmed dataset readiness for modeling
+5. Deployment on Azure (Upcoming)
 
 ## Current Progress
 - [x] Project setup
 - [x] Data ingestion pipeline
 - [x] ETL pipeline
 - [x] Feature engineering
-- [ ] EDA
+- [x] EDA
 - [ ] Azure deployment
