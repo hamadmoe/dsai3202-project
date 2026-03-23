@@ -22,21 +22,7 @@ This project implements a cloud-based data pipeline for predicting traffic conge
 
 ## Pipeline Architecture
 
-Raw Data (CSV)
-↓
-Ingestion (Chunk Processing)
-↓
-Bronze Layer (Parquet)
-↓
-ETL Pipeline
-↓
-Silver Layer (Clean Data)
-↓
-Feature Engineering
-↓
-Gold Layer (ML-ready Data)
-↓
-Azure Blob Storage
+Raw Data (CSV)--> Ingestion (Chunk Processing) --> Bronze Layer (Parquet) --> ETL Pipeline --> Silver Layer (Clean Data) --> Feature Engineering --> Gold Layer (ML-ready Data) --> Azure Blob Storage
 
 ---
 
@@ -90,35 +76,11 @@ Azure Blob Storage
 ---
 
 ##  Azure Deployment
-- Uploaded processed data to Azure Blob Storage
+- Uploaded raw, processed, and curated data to Azure Blob Storage
 - Implemented cloud-based storage architecture
 - Ensured separation of code and data
 
 
-
-##  Project Structure
-
-dsai3202-project/
-│
-├── data/
-│ ├── raw/
-│ ├── processed/
-│ └── features/
-│
-├── src/
-│ ├── ingestion.py
-│ ├── etl.py
-│ ├── features.py
-| ├── upload.py
-│
-├── notebooks/
-│ └── eda.ipynb
-│
-├── config/
-│ └── schema.json
-│
-├── README.md
-└── requirements.txt
 
 ## IMPORTANT NOTE!
 - Because of the huge size of the dataset, raw data was not uploaded to the repo
