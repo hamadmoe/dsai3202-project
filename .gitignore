@@ -13,3 +13,7 @@ __pycache__/
 
 # OS files
 .DS_Store
+
+#model due to its size
+
+*.pkl

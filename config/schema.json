@@ -1,0 +1,104 @@
+{
+  "dataset_name": "traffic_congestion_curated",
+  "layer": "Gold (curated)",
+  "description": "Feature-engineered dataset derived from NYC Yellow Taxi data, used for traffic congestion prediction",
+
+  "target": {
+    "name": "congestion_level",
+    "type": "categorical",
+    "classes": ["LOW", "MEDIUM", "HIGH"],
+    "description": "Traffic congestion level derived from average trip speed"
+  },
+
+  "features": [
+    {
+      "name": "trip_distance",
+      "type": "float64",
+      "role": "input",
+      "description": "Distance of the trip in miles",
+      "constraints": "0 < trip_distance < 100"
+    },
+    {
+      "name": "hour",
+      "type": "int32",
+      "role": "input",
+      "description": "Hour of the day when the trip started (0–23)",
+      "constraints": "0 <= hour <= 23"
+    },
+    {
+      "name": "day_of_week",
+      "type": "int32",
+      "role": "input",
+      "description": "Day of the week (0=Monday, 6=Sunday)",
+      "constraints": "0 <= day_of_week <= 6"
+    }
+  ],
+
+  "excluded_features": [
+    {
+      "name": "avg_speed",
+      "reason": "Directly used to derive congestion_level → causes data leakage"
+    },
+    {
+      "name": "trip_duration",
+      "reason": "Can be used to reconstruct avg_speed → indirect data leakage"
+    }
+  ],
+
+  "metadata_columns": [
+    {
+      "name": "tpep_pickup_datetime",
+      "type": "datetime64",
+      "description": "Pickup timestamp"
+    },
+    {
+      "name": "tpep_dropoff_datetime",
+      "type": "datetime64",
+      "description": "Dropoff timestamp"
+    },
+    {
+      "name": "pickup_longitude",
+      "type": "float64",
+      "description": "Pickup longitude coordinate"
+    },
+    {
+      "name": "pickup_latitude",
+      "type": "float64",
+      "description": "Pickup latitude coordinate"
+    },
+    {
+      "name": "dropoff_longitude",
+      "type": "float64",
+      "description": "Dropoff longitude coordinate"
+    },
+    {
+      "name": "dropoff_latitude",
+      "type": "float64",
+      "description": "Dropoff latitude coordinate"
+    }
+  ],
+
+  "data_quality_rules": [
+    "trip_distance > 0",
+    "trip_duration between 1 and 180 minutes",
+    "avg_speed between 1 and 100 mph",
+    "valid timestamps for pickup and dropoff",
+    "valid geographic coordinates for pickup and dropoff"
+  ],
+
+  "data_layers": {
+    "raw": "Azure container storing original ingested parquet files",
+    "processed": "Cleaned and validated dataset after ETL",
+    "curated": "Feature-engineered dataset used for machine learning",
+    "predictions": "Model output predictions stored after batch inference"
+  },
+
+  "pipeline_notes": [
+    "Dataset processed in chunks due to large size (~1.7GB)",
+    "Parquet format used for efficient storage and processing",
+    "Feature engineering performed after ETL to ensure clean inputs",
+    "Model training excludes leakage-prone features to ensure realistic evaluation"
+  ],
+
+  "version": "1.0"
+}

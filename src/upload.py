@@ -2,7 +2,7 @@ from azure.storage.blob import BlobServiceClient
 import os
 
 CONNECT_STR = "PRIVATE"
-CONTAINER_NAME = "traffic-data"
+CONTAINER_NAME = "curated"
 LOCAL_FOLDER = "data/features/"
 
 def upload_files():

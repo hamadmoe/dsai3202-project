@@ -1,0 +1,8 @@
+{
+    "model_name": "RandomForestClassifier",
+    "version": "1.0",
+    "features": ["trip_distance", "hour", "day_of_week"],
+    "target": "congestion_level",
+    "accuracy": 0.74,
+    "notes": "Removed data leakage by excluding avg_speed and trip_duration"
+}
